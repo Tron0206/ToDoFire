@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		8F6D081828215EDA00A7956C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D081728215EDA00A7956C /* AppDelegate.swift */; };
 		8F6D081A28215EDA00A7956C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D081928215EDA00A7956C /* SceneDelegate.swift */; };
-		8F6D081C28215EDA00A7956C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D081B28215EDA00A7956C /* ViewController.swift */; };
+		8F6D081C28215EDA00A7956C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D081B28215EDA00A7956C /* LoginViewController.swift */; };
 		8F6D081F28215EDA00A7956C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6D081D28215EDA00A7956C /* Main.storyboard */; };
 		8F6D082128215EDB00A7956C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F6D082028215EDB00A7956C /* Assets.xcassets */; };
 		8F6D082428215EDB00A7956C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F6D082228215EDB00A7956C /* LaunchScreen.storyboard */; };
 		8F6D082C2821636B00A7956C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8F6D082B2821636B00A7956C /* .gitignore */; };
+		8F6D082E282165DC00A7956C /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D082D282165DC00A7956C /* TasksViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8F6D081428215EDA00A7956C /* ToDoFire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoFire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F6D081728215EDA00A7956C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F6D081928215EDA00A7956C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8F6D081B28215EDA00A7956C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8F6D081B28215EDA00A7956C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8F6D081E28215EDA00A7956C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F6D082028215EDB00A7956C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F6D082328215EDB00A7956C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F6D082528215EDB00A7956C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F6D082B2821636B00A7956C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8F6D082D282165DC00A7956C /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,15 +61,32 @@
 		8F6D081628215EDA00A7956C /* ToDoFire */ = {
 			isa = PBXGroup;
 			children = (
+				8F6D082F2821661E00A7956C /* SupportingFiles */,
+				8F6D08302821663600A7956C /* Controllers */,
+			);
+			path = ToDoFire;
+			sourceTree = "<group>";
+		};
+		8F6D082F2821661E00A7956C /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
 				8F6D081728215EDA00A7956C /* AppDelegate.swift */,
 				8F6D081928215EDA00A7956C /* SceneDelegate.swift */,
-				8F6D081B28215EDA00A7956C /* ViewController.swift */,
 				8F6D081D28215EDA00A7956C /* Main.storyboard */,
 				8F6D082028215EDB00A7956C /* Assets.xcassets */,
 				8F6D082228215EDB00A7956C /* LaunchScreen.storyboard */,
 				8F6D082528215EDB00A7956C /* Info.plist */,
 			);
-			path = ToDoFire;
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		8F6D08302821663600A7956C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F6D081B28215EDA00A7956C /* LoginViewController.swift */,
+				8F6D082D282165DC00A7956C /* TasksViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +161,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F6D081C28215EDA00A7956C /* ViewController.swift in Sources */,
+				8F6D081C28215EDA00A7956C /* LoginViewController.swift in Sources */,
+				8F6D082E282165DC00A7956C /* TasksViewController.swift in Sources */,
 				8F6D081828215EDA00A7956C /* AppDelegate.swift in Sources */,
 				8F6D081A28215EDA00A7956C /* SceneDelegate.swift in Sources */,
 			);
@@ -295,7 +315,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AWNG6A5UPC;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ToDoFire/Info.plist;
+				INFOPLIST_FILE = ToDoFire/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -323,7 +343,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AWNG6A5UPC;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ToDoFire/Info.plist;
+				INFOPLIST_FILE = ToDoFire/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
