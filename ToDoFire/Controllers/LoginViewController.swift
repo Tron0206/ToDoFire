@@ -35,7 +35,7 @@ final class LoginViewController: UIViewController {
         guard let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         guard let scrollView = self.view as? UIScrollView else { return }
         scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height + keyboardSize.height)
-        scrollView.showsVerticalScrollIndicator = false
+        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         
     }
     
