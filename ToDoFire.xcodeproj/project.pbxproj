@@ -16,8 +16,8 @@
 		8F6D082C2821636B00A7956C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8F6D082B2821636B00A7956C /* .gitignore */; };
 		8F6D082E282165DC00A7956C /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D082D282165DC00A7956C /* TasksViewController.swift */; };
 		8F6D08322821728B00A7956C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F6D08312821728B00A7956C /* GoogleService-Info.plist */; };
-		8F6D08342821A03900A7956C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D08332821A03900A7956C /* Task.swift */; };
 		8F6D08362821A04100A7956C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D08352821A04100A7956C /* User.swift */; };
+		8F6D083A2821B83700A7956C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D08392821B83700A7956C /* Task.swift */; };
 		B3F72138892AA1FF49FCEBCA /* Pods_ToDoFire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D96A24528593F174E33A997D /* Pods_ToDoFire.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,9 +34,8 @@
 		8F6D082B2821636B00A7956C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8F6D082D282165DC00A7956C /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		8F6D08312821728B00A7956C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8F6D08332821A03900A7956C /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Task.swift; path = ../../../../../Documents/Task.swift; sourceTree = "<group>"; };
 		8F6D08352821A04100A7956C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8F6D08382821A04900A7956C /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		8F6D08392821B83700A7956C /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		CFFD2706360662BBC7C9813F /* Pods-ToDoFire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoFire.release.xcconfig"; path = "Target Support Files/Pods-ToDoFire/Pods-ToDoFire.release.xcconfig"; sourceTree = "<group>"; };
 		D96A24528593F174E33A997D /* Pods_ToDoFire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoFire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -101,7 +100,6 @@
 				8F6D082228215EDB00A7956C /* LaunchScreen.storyboard */,
 				8F6D082528215EDB00A7956C /* Info.plist */,
 				8F6D08312821728B00A7956C /* GoogleService-Info.plist */,
-				8F6D08332821A03900A7956C /* Task.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -118,8 +116,8 @@
 		8F6D08372821A04900A7956C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8F6D08382821A04900A7956C /* Task.swift */,
 				8F6D08352821A04100A7956C /* User.swift */,
+				8F6D08392821B83700A7956C /* Task.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,8 +250,8 @@
 				8F6D081C28215EDA00A7956C /* LoginViewController.swift in Sources */,
 				8F6D082E282165DC00A7956C /* TasksViewController.swift in Sources */,
 				8F6D08362821A04100A7956C /* User.swift in Sources */,
-				8F6D08342821A03900A7956C /* Task.swift in Sources */,
 				8F6D081828215EDA00A7956C /* AppDelegate.swift in Sources */,
+				8F6D083A2821B83700A7956C /* Task.swift in Sources */,
 				8F6D081A28215EDA00A7956C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
