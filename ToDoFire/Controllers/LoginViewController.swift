@@ -19,11 +19,11 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardMoving(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardMoving(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
         warnLabel.alpha = 0
         //
-        FirebaseAuth.Auth.auth().addStateDidChangeListener { [weak self] asuth, user in
+        FirebaseAuth.Auth.auth().addStateDidChangeListener { [weak self] auth, user in
             if user != nil {
                 self?.performSegue(withIdentifier: (self?.segueIdentifier)!, sender: nil)
             }
@@ -75,15 +75,13 @@ final class LoginViewController: UIViewController {
                   return
               }
         
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { user, error in
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak self] user, error in
             if error == nil {
-                if user != nil {
-                    
-                } else {
-                    print("User is not created")
+                if user == nil {
+                    self?.displayWarningLabel(withText: "User is not created")
                 }
             } else {
-                print(error!.localizedDescription)
+                self?.displayWarningLabel(withText: "\(error!.localizedDescription)")
             }
         }
         
@@ -100,19 +98,31 @@ final class LoginViewController: UIViewController {
     }
     
     //MARK: - Objective-C methods
-    @objc private func keyboardDidShow(notification: Notification) {
+    
+    @objc private func keyboardMoving(notification: Notification) {
         guard let userInfo = notification.userInfo else { return }
         guard let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         guard let scrollView = self.view as? UIScrollView else { return }
-        scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height + keyboardSize.height)
-        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
         
+        if notification.name == UIResponder.keyboardDidShowNotification {
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+            scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+        } else if notification.name == UIResponder.keyboardDidHideNotification {
+            UIView.animate(withDuration: 1) {
+                scrollView.contentInset = .zero
+                scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+            }
+        }
     }
-    
-    @objc private func keyboardDidHide() {
-        guard let scrollView = self.view as? UIScrollView else { return }
-        scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
+}
+
+
+//MARK: - Extensions
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    
 }
 
