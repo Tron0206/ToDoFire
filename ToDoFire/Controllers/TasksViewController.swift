@@ -46,7 +46,8 @@ final class TasksViewController: UIViewController {
             guard let textField = alertController.textFields?.first,
                   textField.text != "" else { return }
             let task = Task(title: textField.text!, userId: (self?.user.uid)!)
-            
+            let tasksRef = self?.ref.child(task.title.lowercased())
+            tasksRef?.setValue(task.convertToDictionary())
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(save)

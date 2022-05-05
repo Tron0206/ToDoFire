@@ -11,6 +11,7 @@ import Firebase
 final class LoginViewController: UIViewController {
     
     private let segueIdentifier = "tasksSegue"
+    var ref: DatabaseReference!
     @IBOutlet weak var warnLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -18,27 +19,21 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardMoving(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardMoving(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
-        warnLabel.alpha = 0
-        //
-        FirebaseAuth.Auth.auth().addStateDidChangeListener { [weak self] auth, user in
-            if user != nil {
-                self?.performSegue(withIdentifier: (self?.segueIdentifier)!, sender: nil)
-            }
-        }
+        ref = Database.database().reference(withPath: "users")
+        addNotifications()
+        setupView()
+        checkCurrentUser()
+        addGesture()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        emailTextField.text = ""
-        passwordTextField.text = ""
+        setupView()
     }
     
     
-    //MARK: - Methods
+    //MARK: - @IBAction
     
     @IBAction func loginTapped(_ sender: UIButton) {
         guard let email = emailTextField.text,
@@ -76,16 +71,19 @@ final class LoginViewController: UIViewController {
               }
         
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak self] user, error in
-            if error == nil {
-                if user == nil {
-                    self?.displayWarningLabel(withText: "User is not created")
-                }
-            } else {
-                self?.displayWarningLabel(withText: "\(error!.localizedDescription)")
+            guard error == nil, user != nil else {
+                self?.displayWarningLabel(withText: error!.localizedDescription)
+                return
             }
+            
+            let userRef = self?.ref.child((user?.user.uid)!)
+            userRef?.setValue(["email" : user?.user.email])
         }
         
     }
+    
+    
+    //MARK: - Methods
     
     private func displayWarningLabel(withText text: String) {
         warnLabel.text = text
@@ -94,7 +92,30 @@ final class LoginViewController: UIViewController {
         } completion: { [weak self] complete in
             self?.warnLabel.alpha = 0
         }
-
+    }
+    
+    private func addNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardMoving(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardMoving(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
+    private func checkCurrentUser() {
+        FirebaseAuth.Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            if user != nil {
+                self?.performSegue(withIdentifier: (self?.segueIdentifier)!, sender: nil)
+            }
+        }
+    }
+    
+    private func setupView() {
+        warnLabel.alpha = 0
+        emailTextField.text = ""
+        passwordTextField.text = ""
+    }
+    
+    private func addGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedOnScreen))
+        view.addGestureRecognizer(tapGesture)
     }
     
     //MARK: - Objective-C methods
@@ -113,6 +134,10 @@ final class LoginViewController: UIViewController {
                 scrollView.contentSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
             }
         }
+    }
+    
+    @objc private func tappedOnScreen() {
+        view.endEditing(true)
     }
 }
 
