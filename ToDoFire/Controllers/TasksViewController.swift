@@ -22,7 +22,19 @@ final class TasksViewController: UIViewController {
         super.viewDidLoad()
         getUser()
         createRef()
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ref.observe(.value) { [weak self] snapshot in
+            var _tasks = Array<Task>()
+            for item in snapshot.children {
+                let task = Task(snapshot: item as! DataSnapshot)
+                _tasks.append(task)
+            }
+            self?.tasks = _tasks
+            self?.tableView.reloadData()
+        }
     }
     
     //Get current user
@@ -77,7 +89,7 @@ extension TasksViewController: UITableViewDelegate {
 
 extension TasksViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,7 +102,8 @@ extension TasksViewController: UITableViewDataSource {
     
     private func configureCell(_ cell: inout UITableViewCell, indexPath: IndexPath) {
         var config = cell.defaultContentConfiguration()
-        config.text = "This is cell number \(indexPath.row)"
+        let taskTitle = tasks[indexPath.row].title
+        config.text = taskTitle
         config.textProperties.color = .white
         cell.contentConfiguration = config
     }

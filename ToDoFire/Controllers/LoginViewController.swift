@@ -27,6 +27,7 @@ final class LoginViewController: UIViewController {
     }
     
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupView()
@@ -43,13 +44,12 @@ final class LoginViewController: UIViewController {
                   displayWarningLabel(withText: "Info is incorrect")
                   return
               }
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             if error != nil {
                 self?.displayWarningLabel(withText: "Error occured")
                 return
             }
-            
-            if user != nil {
+            if result?.user != nil {
                 self?.performSegue(withIdentifier: "tasksSegue", sender: nil)
                 return
             }
@@ -70,14 +70,14 @@ final class LoginViewController: UIViewController {
                   return
               }
         
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak self] user, error in
-            guard error == nil, user != nil else {
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { [weak self] result, error in
+            guard error == nil, result?.user != nil else {
                 self?.displayWarningLabel(withText: error!.localizedDescription)
                 return
             }
             
-            let userRef = self?.ref.child((user?.user.uid)!)
-            userRef?.setValue(["email" : user?.user.email])
+            let userRef = self?.ref.child((result?.user.uid)!)
+            userRef?.setValue(["email" : result?.user.email])
         }
         
     }

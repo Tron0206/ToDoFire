@@ -25,7 +25,7 @@ struct Task {
         let snapshotValue = snapshot.value as! [String : AnyObject]
         title = snapshotValue["title"] as! String
         userId = snapshotValue["userId"] as! String
-        completed = snapshotValue["competed"] as! Bool
+        completed = snapshotValue["completed"] as! Bool
         ref = snapshot.ref
     }
     
