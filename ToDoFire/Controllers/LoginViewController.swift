@@ -10,6 +10,8 @@ import Firebase
 
 final class LoginViewController: UIViewController {
     
+    //MARK: Properties
+    
     private let segueIdentifier = "tasksSegue"
     var ref: DatabaseReference!
     @IBOutlet weak var warnLabel: UILabel!
@@ -32,7 +34,6 @@ final class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         setupView()
     }
-    
     
     //MARK: - @IBAction
     
@@ -81,7 +82,6 @@ final class LoginViewController: UIViewController {
         }
         
     }
-    
     
     //MARK: - Methods
     
