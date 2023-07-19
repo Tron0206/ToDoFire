@@ -1,5 +1,11 @@
+# SurfSummerSchoolProject
+За основу проекта взята архитектура MVC.
+## Реализация
 
-The application is ready to use.
-Description of the application at the development stage.
+### MVP
+* Верстка в Storyboard
+* Работа API Firebase
 
-Simple Application with FireBase
+## This is Test app
+* iOS 15.0 +
+* Implementation of MVC templates
