@@ -1,4 +1,4 @@
-# SurfSummerSchoolProject
+# ToDoFire
 За основу проекта взята архитектура MVC.
 ## Реализация
 
